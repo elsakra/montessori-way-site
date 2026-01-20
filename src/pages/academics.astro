@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import siteData from '../data/site.json';
 import { getCollection } from 'astro:content';
 
-const { sections } = siteData;
+const { company, sections } = siteData;
 
 let programs = [];
 try {
@@ -73,76 +73,75 @@ try {
     </div>
   </section>
 
-  <!-- Harkness Method -->
-  <section class="py-20 lg:py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        <div class="reveal">
-          <p class="text-sm uppercase tracking-widest text-burgundy-600 mb-4">Our Approach</p>
-          <h2 class="section-headline text-display-lg text-charcoal-900">
-            Discussion-Based Learning
+  <!-- Teaching Approach - Only shown if approach data exists -->
+  {sections?.academics?.approach && (
+    <section class="py-20 lg:py-32 bg-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div class="reveal">
+            <p class="text-sm uppercase tracking-widest text-burgundy-600 mb-4">Our Approach</p>
+            <h2 class="section-headline text-display-lg text-charcoal-900">
+              {sections.academics.approach.headline || 'Our Teaching Philosophy'}
+            </h2>
+            <p class="mt-6 text-lg text-charcoal-600 leading-relaxed">
+              {sections.academics.approach.content || ''}
+            </p>
+          </div>
+          {sections.academics.approach.image && (
+            <div class="reveal" style="animation-delay: 0.2s">
+              <img 
+                src={sections.academics.approach.image}
+                alt={sections.academics.approach.headline || 'Our Approach'}
+                class="w-full rounded-2xl shadow-xl"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Faculty Section - Only shown if faculty stats exist -->
+  {sections?.academics?.faculty && (
+    <section id="faculty" class="py-20 lg:py-32 bg-charcoal-900 text-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="max-w-3xl mx-auto text-center reveal">
+          <p class="text-sm uppercase tracking-widest text-burgundy-400 mb-4">Our Teachers</p>
+          <h2 class="section-headline text-display-lg text-white">
+            {sections.academics.faculty.headline || 'Dedicated Educators'}
           </h2>
-          <p class="mt-6 text-lg text-charcoal-600 leading-relaxed">
-            At Heritage Academy, we believe that the best learning happens through dialogue and discovery. Our classes use a discussion-based approach inspired by the Harkness method, where students gather around an oval table to engage in collaborative inquiry.
+          <p class="mt-6 text-xl text-slate-300">
+            {sections.academics.faculty.content || ''}
           </p>
-          <p class="mt-4 text-lg text-charcoal-600 leading-relaxed">
-            This approach develops critical thinking, communication skills, and the confidence to share ideas—skills that serve students throughout their lives.
+          {sections.academics.faculty.stats && sections.academics.faculty.stats.length > 0 && (
+            <div class="mt-8 grid sm:grid-cols-3 gap-6">
+              {sections.academics.faculty.stats.map((stat) => (
+                <div class="text-center">
+                  <div class="text-4xl font-display text-white">{stat.value}</div>
+                  <p class="text-sm text-slate-400 mt-1">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- College/Next Steps Section - Only shown if college destinations exist -->
+  {siteData.socialProof?.collegeDestinations && siteData.socialProof.collegeDestinations.length > 0 && (
+    <section class="py-20 lg:py-32 bg-cream-50">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="text-center mb-12 reveal">
+          <p class="text-sm uppercase tracking-widest text-burgundy-600 mb-4">Success Stories</p>
+          <h2 class="section-headline text-display-lg text-charcoal-900">
+            Where Our Graduates Go
+          </h2>
+          <p class="mt-4 text-lg text-charcoal-600 max-w-2xl mx-auto">
+            {company.name} graduates are well-prepared for their next steps.
           </p>
         </div>
-        <div class="reveal" style="animation-delay: 0.2s">
-          <img 
-            src="/images/harkness-classroom.jpg"
-            alt="Harkness Discussion"
-            class="w-full rounded-2xl shadow-xl"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Faculty Section -->
-  <section id="faculty" class="py-20 lg:py-32 bg-charcoal-900 text-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <div class="max-w-3xl mx-auto text-center reveal">
-        <p class="text-sm uppercase tracking-widest text-burgundy-400 mb-4">Our Faculty</p>
-        <h2 class="section-headline text-display-lg text-white">
-          Exceptional Educators
-        </h2>
-        <p class="mt-6 text-xl text-slate-300">
-          Our faculty are scholars, mentors, and coaches who are dedicated to each student's success. With an average of 15 years of teaching experience and advanced degrees from top universities, they bring passion and expertise to every classroom.
-        </p>
-        <div class="mt-8 grid sm:grid-cols-3 gap-6">
-          <div class="text-center">
-            <div class="text-4xl font-display text-white">85%</div>
-            <p class="text-sm text-slate-400 mt-1">hold advanced degrees</p>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl font-display text-white">15</div>
-            <p class="text-sm text-slate-400 mt-1">years avg. experience</p>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl font-display text-white">12:1</div>
-            <p class="text-sm text-slate-400 mt-1">student-faculty ratio</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- College Destinations -->
-  <section class="py-20 lg:py-32 bg-cream-50">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <div class="text-center mb-12 reveal">
-        <p class="text-sm uppercase tracking-widest text-burgundy-600 mb-4">College Placement</p>
-        <h2 class="section-headline text-display-lg text-charcoal-900">
-          Where Our Graduates Go
-        </h2>
-        <p class="mt-4 text-lg text-charcoal-600 max-w-2xl mx-auto">
-          Heritage Academy graduates attend the nation's most selective colleges and universities. Our college counseling program provides personalized guidance from junior year through enrollment.
-        </p>
-      </div>
-      
-      {siteData.socialProof?.collegeDestinations && (
+        
         <div class="flex flex-wrap justify-center gap-4 reveal" style="animation-delay: 0.2s">
           {siteData.socialProof.collegeDestinations.map((college) => (
             <span class="px-4 py-2 bg-white rounded-full text-charcoal-600 text-sm shadow-sm">
@@ -150,7 +149,7 @@ try {
             </span>
           ))}
         </div>
-      )}
-    </div>
-  </section>
+      </div>
+    </section>
+  )}
 </BaseLayout>

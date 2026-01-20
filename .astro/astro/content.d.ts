@@ -140,15 +140,14 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"athletics": {
-"varsity-soccer.md": {
-	id: "varsity-soccer.md";
-  slug: "varsity-soccer";
+		"athletics": Record<string, {
+  id: string;
+  slug: string;
   body: string;
   collection: "athletics";
-  data: InferEntrySchema<"athletics">
-} & { render(): Render[".md"] };
-};
+  data: InferEntrySchema<"athletics">;
+  render(): Render[".md"];
+}>;
 "events": Record<string, {
   id: string;
   slug: string;
@@ -157,15 +156,14 @@ declare module 'astro:content' {
   data: InferEntrySchema<"events">;
   render(): Render[".md"];
 }>;
-"faculty": {
-"sarah-morrison.md": {
-	id: "sarah-morrison.md";
-  slug: "sarah-morrison";
+"faculty": Record<string, {
+  id: string;
+  slug: string;
   body: string;
   collection: "faculty";
-  data: InferEntrySchema<"faculty">
-} & { render(): Render[".md"] };
-};
+  data: InferEntrySchema<"faculty">;
+  render(): Render[".md"];
+}>;
 "faq": {
 "application-requirements.md": {
 	id: "application-requirements.md";
@@ -189,31 +187,22 @@ declare module 'astro:content' {
   data: InferEntrySchema<"faq">
 } & { render(): Render[".md"] };
 };
-"news": {
-"spring-semester-2025.md": {
-	id: "spring-semester-2025.md";
-  slug: "spring-semester-2025";
+"news": Record<string, {
+  id: string;
+  slug: string;
   body: string;
   collection: "news";
-  data: InferEntrySchema<"news">
-} & { render(): Render[".md"] };
-};
-"programs": {
-"english.md": {
-	id: "english.md";
-  slug: "english";
+  data: InferEntrySchema<"news">;
+  render(): Render[".md"];
+}>;
+"programs": Record<string, {
+  id: string;
+  slug: string;
   body: string;
   collection: "programs";
-  data: InferEntrySchema<"programs">
-} & { render(): Render[".md"] };
-"mathematics.md": {
-	id: "mathematics.md";
-  slug: "mathematics";
-  body: string;
-  collection: "programs";
-  data: InferEntrySchema<"programs">
-} & { render(): Render[".md"] };
-};
+  data: InferEntrySchema<"programs">;
+  render(): Render[".md"];
+}>;
 "testimonials": {
 "student-testimonial.md": {
 	id: "student-testimonial.md";

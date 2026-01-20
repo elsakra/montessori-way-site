@@ -48,13 +48,15 @@ try {
             <p>Our commitment to academic excellence is matched only by our dedication to character development. We believe that true education prepares students not just for college, but for lives of meaning and purpose.</p>
           </div>
         </div>
-        <div class="reveal" style="animation-delay: 0.2s">
-          <img 
-            src={about?.image || "/images/campus-aerial.jpg"}
-            alt="Heritage Academy Campus"
-            class="w-full rounded-2xl shadow-xl"
-          />
-        </div>
+        {about?.image && (
+          <div class="reveal" style="animation-delay: 0.2s">
+            <img 
+              src={about.image}
+              alt={`${company.name} Campus`}
+              class="w-full rounded-2xl shadow-xl"
+            />
+          </div>
+        )}
       </div>
     </div>
   </section>

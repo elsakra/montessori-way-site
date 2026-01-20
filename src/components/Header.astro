@@ -122,18 +122,26 @@ const currentPath = Astro.url.pathname;
           <div class="mb-8">
             <p class="text-xs uppercase tracking-widest text-burgundy-300 mb-4">Contact</p>
             <div class="space-y-2 text-white">
-              <p>{company.address.street}</p>
-              <p>{company.address.city}, {company.address.state} {company.address.zip}</p>
-              <p class="mt-4">
-                <a href={`tel:${company.phone}`} class="hover:text-cream-200 transition-colors">
-                  {company.phone}
-                </a>
-              </p>
-              <p>
-                <a href={`mailto:${company.email}`} class="hover:text-cream-200 transition-colors">
-                  {company.email}
-                </a>
-              </p>
+              {company.address?.street && <p>{company.address.street}</p>}
+              {(company.address?.city || company.address?.state) && (
+                <p>
+                  {company.address?.city}{company.address?.city && company.address?.state && ', '}{company.address?.state} {company.address?.zip}
+                </p>
+              )}
+              {company.phone && (
+                <p class="mt-4">
+                  <a href={`tel:${company.phone}`} class="hover:text-cream-200 transition-colors">
+                    {company.phone}
+                  </a>
+                </p>
+              )}
+              {company.email && (
+                <p>
+                  <a href={`mailto:${company.email}`} class="hover:text-cream-200 transition-colors">
+                    {company.email}
+                  </a>
+                </p>
+              )}
             </div>
           </div>
           

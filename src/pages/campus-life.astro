@@ -38,104 +38,106 @@ const campusLife = sections?.campusLife;
     </section>
   )}
 
-  <!-- Residential Life -->
-  <section class="py-20 lg:py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        <div class="reveal">
-          <p class="text-sm uppercase tracking-widest text-burgundy-600 mb-4">Boarding</p>
-          <h2 class="section-headline text-display-lg text-charcoal-900">
-            A Home Away From Home
-          </h2>
-          <p class="mt-6 text-lg text-charcoal-600 leading-relaxed">
-            Our residential program creates a close-knit community where students form lifelong friendships and develop independence. Faculty members live on campus and serve as dorm parents, providing mentorship and support.
-          </p>
-          <ul class="mt-6 space-y-3">
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-burgundy-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-charcoal-600">12 dormitories across campus</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-burgundy-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-charcoal-600">Faculty families in residence</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-burgundy-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-charcoal-600">Weekend activities and excursions</span>
-            </li>
-          </ul>
-        </div>
-        <div class="reveal" style="animation-delay: 0.2s">
-          <img 
-            src="/images/dorm-life.jpg"
-            alt="Student Life in the Dorms"
-            class="w-full rounded-2xl shadow-xl"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Student Organizations -->
-  <section class="py-20 lg:py-32 bg-charcoal-900 text-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <div class="text-center mb-12 reveal">
-        <p class="text-sm uppercase tracking-widest text-burgundy-400 mb-4">Get Involved</p>
-        <h2 class="section-headline text-display-lg text-white">
-          60+ Clubs & Organizations
-        </h2>
-        <p class="mt-4 text-xl text-slate-300 max-w-2xl mx-auto">
-          From debate to robotics, community service to cultural clubs, there's something for everyone.
-        </p>
-      </div>
-      
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal" style="animation-delay: 0.2s">
-        {['Debate Society', 'Model UN', 'Robotics Club', 'Literary Magazine', 'Community Service', 'Cultural Clubs', 'Music Ensembles', 'Theater Productions'].map((club) => (
-          <div class="p-4 border border-charcoal-700 rounded-lg text-center hover:border-burgundy-500 transition-colors">
-            <span class="text-white">{club}</span>
+  <!-- Residential Life - Only shown if residential/boarding data exists -->
+  {campusLife?.residential && (
+    <section class="py-20 lg:py-32 bg-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div class="reveal">
+            <p class="text-sm uppercase tracking-widest text-burgundy-600 mb-4">{campusLife.residential.label || 'Boarding'}</p>
+            <h2 class="section-headline text-display-lg text-charcoal-900">
+              {campusLife.residential.headline || 'A Home Away From Home'}
+            </h2>
+            <p class="mt-6 text-lg text-charcoal-600 leading-relaxed">
+              {campusLife.residential.content || ''}
+            </p>
+            {campusLife.residential.features && (
+              <ul class="mt-6 space-y-3">
+                {campusLife.residential.features.map((feature) => (
+                  <li class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-burgundy-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-charcoal-600">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Arts Section -->
-  <section class="py-20 lg:py-32 bg-cream-50">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        <div class="order-2 lg:order-1 reveal" style="animation-delay: 0.2s">
-          <img 
-            src="/images/arts-performance.jpg"
-            alt="Arts Performance"
-            class="w-full rounded-2xl shadow-xl"
-          />
+          {campusLife.residential.image && (
+            <div class="reveal" style="animation-delay: 0.2s">
+              <img 
+                src={campusLife.residential.image}
+                alt={campusLife.residential.headline || 'Residential Life'}
+                class="w-full rounded-2xl shadow-xl"
+              />
+            </div>
+          )}
         </div>
-        <div class="order-1 lg:order-2 reveal">
-          <p class="text-sm uppercase tracking-widest text-burgundy-600 mb-4">The Arts</p>
-          <h2 class="section-headline text-display-lg text-charcoal-900">
-            Creativity & Expression
+      </div>
+    </section>
+  )}
+
+  <!-- Student Organizations - Only shown if organizations data exists -->
+  {campusLife?.organizations && campusLife.organizations.length > 0 && (
+    <section class="py-20 lg:py-32 bg-charcoal-900 text-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="text-center mb-12 reveal">
+          <p class="text-sm uppercase tracking-widest text-burgundy-400 mb-4">Get Involved</p>
+          <h2 class="section-headline text-display-lg text-white">
+            {campusLife.organizationsHeadline || 'Clubs & Organizations'}
           </h2>
-          <p class="mt-6 text-lg text-charcoal-600 leading-relaxed">
-            Our arts program provides opportunities for students at all levels to explore music, theater, dance, and visual arts. With state-of-the-art facilities and dedicated faculty, students develop their creative voices.
+          <p class="mt-4 text-xl text-slate-300 max-w-2xl mx-auto">
+            {campusLife.organizationsContent || ''}
           </p>
-          <div class="mt-8 grid grid-cols-2 gap-4">
-            <div>
-              <div class="text-3xl font-display text-burgundy-700">4</div>
-              <p class="text-sm text-charcoal-600">Annual productions</p>
+        </div>
+        
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal" style="animation-delay: 0.2s">
+          {campusLife.organizations.map((club) => (
+            <div class="p-4 border border-charcoal-700 rounded-lg text-center hover:border-burgundy-500 transition-colors">
+              <span class="text-white">{club}</span>
             </div>
-            <div>
-              <div class="text-3xl font-display text-burgundy-700">15+</div>
-              <p class="text-sm text-charcoal-600">Music ensembles</p>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Arts Section - Only shown if arts data exists -->
+  {campusLife?.arts && (
+    <section class="py-20 lg:py-32 bg-cream-50">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {campusLife.arts.image && (
+            <div class="order-2 lg:order-1 reveal" style="animation-delay: 0.2s">
+              <img 
+                src={campusLife.arts.image}
+                alt={campusLife.arts.headline || 'Arts Program'}
+                class="w-full rounded-2xl shadow-xl"
+              />
             </div>
+          )}
+          <div class="order-1 lg:order-2 reveal">
+            <p class="text-sm uppercase tracking-widest text-burgundy-600 mb-4">{campusLife.arts.label || 'The Arts'}</p>
+            <h2 class="section-headline text-display-lg text-charcoal-900">
+              {campusLife.arts.headline || 'Creativity & Expression'}
+            </h2>
+            <p class="mt-6 text-lg text-charcoal-600 leading-relaxed">
+              {campusLife.arts.content || ''}
+            </p>
+            {campusLife.arts.stats && (
+              <div class="mt-8 grid grid-cols-2 gap-4">
+                {campusLife.arts.stats.map((stat) => (
+                  <div>
+                    <div class="text-3xl font-display text-burgundy-700">{stat.value}</div>
+                    <p class="text-sm text-charcoal-600">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 </BaseLayout>

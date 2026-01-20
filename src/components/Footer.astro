@@ -17,13 +17,19 @@ const { company, footer, branding } = siteData;
           {company.tagline}
         </p>
         <div class="mt-6 text-sm text-slate-400">
-          <p>{company.address.street}</p>
-          <p>{company.address.city}, {company.address.state} {company.address.zip}</p>
-          <p class="mt-3">
-            <a href={`tel:${company.phone}`} class="hover:text-white transition-colors">
-              {company.phone}
-            </a>
-          </p>
+          {company.address?.street && <p>{company.address.street}</p>}
+          {(company.address?.city || company.address?.state) && (
+            <p>
+              {company.address?.city}{company.address?.city && company.address?.state && ', '}{company.address?.state} {company.address?.zip}
+            </p>
+          )}
+          {company.phone && (
+            <p class="mt-3">
+              <a href={`tel:${company.phone}`} class="hover:text-white transition-colors">
+                {company.phone}
+              </a>
+            </p>
+          )}
         </div>
       </div>
 

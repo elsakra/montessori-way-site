@@ -30,7 +30,7 @@ try {
     <div class="absolute inset-0">
       <img 
         src={hero.backgroundImage || "/images/hero-student.jpg"}
-        alt="Students at Heritage Academy"
+        alt={`Students at ${company.name}`}
         class="w-full h-full object-cover"
       />
       <div class="hero-overlay absolute inset-0"></div>
@@ -107,13 +107,15 @@ try {
             </a>
           </div>
         </div>
-        <div class="reveal" style="animation-delay: 0.2s">
-          <img 
-            src={sections?.about?.image || "/images/campus-aerial.jpg"}
-            alt="Heritage Academy Campus"
-            class="w-full rounded-2xl shadow-xl"
-          />
-        </div>
+        {sections?.about?.image && (
+          <div class="reveal" style="animation-delay: 0.2s">
+            <img 
+              src={sections.about.image}
+              alt={`${company.name} Campus`}
+              class="w-full rounded-2xl shadow-xl"
+            />
+          </div>
+        )}
         </div>
       </div>
     </section>
